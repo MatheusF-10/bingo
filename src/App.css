@@ -1,0 +1,223 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.controls button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.number-circle {
+  background-color: #DCDCDC;
+  color: black;
+  padding: 24px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.number-circle.drawn {
+  background-color: #0000FF;
+  color: white;
+}
+
+.number-animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  animation: fadeInOut 2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 100%;
+  border: 1px solid #000;
+  width: 300px;
+  height: 300px;
+}
+
+.current-number {
+  font-size: 200px;
+  font-weight: bold;
+  color: #FFA500;
+}
+
+.rocket {
+  font-size: 50px;
+  animation: rocketMove 2s ease-in-out;
+}
+
+.fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.firework {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+
+.firework::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: firework 2s ease-in-out infinite;
+}
+
+.firework:nth-child(1) {
+  left: 25%;
+  top: 50%;
+}
+
+.firework:nth-child(2) {
+  left: 75%;
+  top: 50%;
+}
+
+.firework:nth-child(3) {
+  left: 50%;
+  top: 25%;
+}
+
+.firework:nth-child(4) {
+  left: 50%;
+  top: 75%;
+}
+
+.firework:nth-child(1)::before {
+  background: #ff0000;
+  animation-delay: 0.2s;
+}
+
+.firework:nth-child(2)::before {
+  background: #ffd700;
+  animation-delay: 0.4s;
+}
+
+.firework:nth-child(3)::before {
+  background: #00ff00;
+  animation-delay: 0.6s;
+}
+
+.firework:nth-child(4)::before {
+  background: #ff00ff;
+  animation-delay: 0.8s;
+}
+
+@keyframes firework {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow:
+      0 0 10px 5px #fff,
+      0 0 20px 10px #fff,
+      0 0 30px 15px #fff,
+      0 0 40px 20px #fff,
+      0 0 50px 25px #fff,
+      0 0 60px 30px #fff,
+      0 0 70px 35px #fff,
+      0 0 80px 40px #fff;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+    box-shadow:
+      -150px -150px 10px #ff0000,
+      150px -150px 10px #ffd700,
+      150px 150px 10px #00ff00,
+      -150px 150px 10px #ff00ff,
+      -250px 0 10px #ff4500,
+      250px 0 10px #00ffff,
+      0 -250px 10px #ff1493,
+      0 250px 10px #32cd32;
+  }
+}
+
+.firework::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  animation: firework 2.5s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 100%); }
+  20% { opacity: 1; transform: translate(-50%, -50%); }
+  80% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -150%); }
+}
+
+@keyframes rocketMove {
+  0% { transform: translateY(50px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(-50px); }
+}
